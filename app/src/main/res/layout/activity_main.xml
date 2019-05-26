@@ -14,12 +14,12 @@
              app:layout_constraintEnd_toEndOf="parent" android:id="@+id/include"/>
 
     <!--fragment video -->
-
     <FrameLayout
 
+            android:id="@+id/framelayout_video"
             android:layout_width="0dp"
             android:background="@android:color/white"
-            android:layout_height="300dp"
+            android:layout_height="400dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
@@ -27,7 +27,6 @@
             app:layout_constraintTop_toBottomOf="@+id/include"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <!--fragment listView-->
-
+    <!--fragment video -->
 
 </android.support.constraint.ConstraintLayout>

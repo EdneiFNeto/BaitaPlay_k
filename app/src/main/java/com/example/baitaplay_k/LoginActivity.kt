@@ -16,13 +16,8 @@ class LoginActivity : AppCompatActivity() {
         val actionbar = supportActionBar
         actionbar?.setDisplayShowTitleEnabled(false)
 
-        init()
+
 
     }
 
-    private fun init() {
-        val manager = supportFragmentManager
-        val tx = manager.beginTransaction()
-        tx.replace(R.id.framelayput_video, VideoFragment());
-    }
 }
