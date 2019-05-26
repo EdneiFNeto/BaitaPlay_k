@@ -2,6 +2,7 @@ package com.example.baitaplay_k
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.baitaplay_k.fragments.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         val manager = supportFragmentManager
         val transaction = manager.beginTransaction()
-        transaction.replace(R.id.framelayout_video, VideoFragment())
+        transaction.replace(R.id.framelayout_principal, MainFragment())
         transaction.commit()
     }
 }
