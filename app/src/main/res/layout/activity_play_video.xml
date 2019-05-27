@@ -16,7 +16,7 @@
              app:layout_constraintEnd_toEndOf="parent"
              android:id="@+id/include"/>
 
-    <!--fragment principal -->
+    <!--fragment video -->
     <FrameLayout
             android:id="@+id/framelayout_video"
             android:layout_width="0dp"
@@ -24,6 +24,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintTop_toBottomOf="@+id/include"/>
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleview_lista_canais"
+            android:background="@android:color/white"
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            tools:listitem="@layout/lista_canais"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include"/>
 
 

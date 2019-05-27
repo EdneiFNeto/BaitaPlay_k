@@ -3,7 +3,7 @@ package com.example.baitaplay_k
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.baitaplay_k.fragments.MainFragment
-import com.example.baitaplay_k.fragments.RecycleViewCanais
+import com.example.baitaplay_k.adapter.RecycleViewCanais
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
