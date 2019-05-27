@@ -26,18 +26,18 @@
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintTop_toBottomOf="@+id/include"/>
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycleview_lista_canais"
+
+    <!--recycle view -->
+    <ListView
+            android:scrollbars="vertical"
+            android:visibility="gone"
+            android:id="@+id/listview_canais"
             android:background="@android:color/white"
             android:layout_width="300dp"
             android:layout_height="0dp"
             tools:listitem="@layout/lista_canais"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include"/>
-
-
-
-
+            app:layout_constraintTop_toTopOf="@+id/framelayout_video"
+            app:layout_constraintStart_toStartOf="@+id/framelayout_video"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
