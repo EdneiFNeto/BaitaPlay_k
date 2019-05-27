@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape android:tint="@android:color/holo_orange_dark" android:shape="oval">
+        <shape
+                android:tint="@android:color/holo_orange_dark" android:shape="oval">
 
         </shape>
+
     </item>
 </selector>

@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         android:padding="8dp">
 
+    <!--banner -->
     <android.support.v7.widget.CardView
             android:id="@+id/main_card_canais"
             xmlns:tools="http://schemas.android.com/tools"
@@ -38,38 +39,6 @@
 
     </android.support.v7.widget.CardView>
 
-    <LinearLayout
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
 
-        <View
-                android:layout_margin="5dp"
-                android:layout_width="36dp"
-                android:background="@drawable/custom_button"
-                android:layout_height="4dp"/>
-
-        <View
-                android:layout_margin="5dp"
-                android:layout_width="36dp"
-                android:background="@drawable/custom_button"
-                android:layout_height="4dp"/>
-
-        <View
-                android:layout_margin="5dp"
-                android:layout_width="36dp"
-                android:background="@drawable/custom_button"
-                android:layout_height="4dp"/>
-    </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/main_recycle_view"
-            app:spanCount="2"
-            android:scrollbars="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="android.support.v7.widget.GridLayoutManager"
-            tools:listitem="@layout/item_canais"/>
 
 </LinearLayout>
