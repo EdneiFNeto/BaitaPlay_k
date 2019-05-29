@@ -1,22 +1,16 @@
 package com.example.baitaplay_k.adapter
 
-import android.app.Activity
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.baitaplay_k.PlayVideoActivity
 import com.example.baitaplay_k.R
 import com.example.baitaplay_k.model.Canal
 import kotlinx.android.synthetic.main.lista_canais.view.*
 
-class ListaCanaisAdapter(canais:List<Canal>) :RecyclerView.Adapter<ListaCanaisAdapter.MyHolder>() {
+class ListaCanaisRecycleViewAdapter(canais:List<Canal>) :RecyclerView.Adapter<ListaCanaisRecycleViewAdapter.MyHolder>() {
 
     val canais: List<Canal> = canais
 

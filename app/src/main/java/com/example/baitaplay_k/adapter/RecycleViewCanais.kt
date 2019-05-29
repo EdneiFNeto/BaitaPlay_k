@@ -2,23 +2,20 @@ package com.example.baitaplay_k.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import com.example.baitaplay_k.PlayVideoActivity
 import com.example.baitaplay_k.R
+import com.example.baitaplay_k.VideoActivity
+import com.example.baitaplay_k.model.Canal
 import kotlinx.android.synthetic.main.item_canais.view.*
 
 
-class RecycleViewCanais(): RecyclerView.Adapter<RecycleViewCanais.MyHolder>() {
+class RecycleViewCanais(canais:List<Canal>): RecyclerView.Adapter<RecycleViewCanais.MyHolder>() {
 
-
-    val titulo: List<String> = listOf("Titulo 1", "Titulo 2")
-    val imagem: List<Int> = listOf(R.drawable.banner_flash, R.drawable.banner_flash)
+    val canais:List<Canal> = canais
     private  val TAG:String = "LogRecycleView"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
@@ -27,27 +24,24 @@ class RecycleViewCanais(): RecyclerView.Adapter<RecycleViewCanais.MyHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return titulo.size
+        return canais.size
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        //add elemenmtos ao holder
-        holder.imagemCanal.setBackgroundResource(imagem[position])
-        holder.tituloCanal.text = titulo[position]
-        holder.button.setOnClickListener{
-            val intent = Intent(holder.context, PlayVideoActivity::class.java)
-            holder.context.startActivity(intent)
+
+        val canal = canais[position]
+        holder.imagemCanal.setBackgroundResource(canal.imagem)
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context, VideoActivity::class.java)
+            intent.putExtra("canal", canal)
+            holder.itemView.context.startActivity(intent)
         }
     }
-
-
 
     //class interna
     class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val imagemCanal:ImageView = itemView.main_imagem_canais
-        val tituloCanal:TextView  = itemView.main_titulo_canais
-        val button: FloatingActionButton = itemView.main_botao_canais
         val context:Context = itemView.context
 
 

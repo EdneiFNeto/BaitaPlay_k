@@ -6,49 +6,24 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:cardElevation="12dp"
         android:layout_margin="2dp"
-        android:background="@android:color/white"
         app:cardCornerRadius="12dp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <LinearLayout
+    <RelativeLayout
             android:background="@android:color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
     <ImageView
             android:id="@+id/main_imagem_canais"
             android:layout_alignParentTop="true"
-            android:background="@drawable/banner_flash"
+            android:background="@drawable/bora_filmes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="190dp"/>
 
-
-        <android.support.design.widget.FloatingActionButton
-                android:id="@+id/main_botao_canais"
-                app:elevation="12dp"
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:layout_gravity="top|right"
-                android:layout_marginTop="-20dp"
-                android:src="@drawable/ic_play_circle"
-                android:background="@drawable/custom_button_play"
-                tools:ignore="VectorDrawableCompat"/>
-
-        <TextView
-                android:layout_marginTop="-25dp"
-                android:id="@+id/main_titulo_canais"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:padding="12dp"
-                android:text="Filme Flash"
-                android:textColor="@android:color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 
 
