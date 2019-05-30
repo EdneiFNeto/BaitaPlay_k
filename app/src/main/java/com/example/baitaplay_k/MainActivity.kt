@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ListView
 import com.example.baitaplay_k.adapter.ListaDeCanaisAdapter
-import com.example.baitaplay_k.fragments.MainFragment
 import com.example.baitaplay_k.adapter.RecycleViewCanais
+import com.example.baitaplay_k.controller.AuthentuicationUserController
 import com.example.baitaplay_k.model.Canal
 import com.example.baitaplay_k.util.ListaDeCanalUtil
 import kotlinx.android.synthetic.main.activity_main.*
@@ -42,6 +42,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        //verify user is authentication
+        AuthentuicationUserController(this).execute("ednei")
         listview_main.visibility = View.GONE
         menu_toolbar.setImageResource(R.drawable.ic_menu)
     }

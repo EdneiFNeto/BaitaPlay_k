@@ -7,23 +7,23 @@ import android.util.Log
 import android.widget.Toast
 import com.example.baitaplay_k.MainActivity
 import com.example.baitaplay_k.model.User
+import com.example.baitaplay_k.util.DialogAutheticationUtil
 import org.json.JSONArray
 import java.net.HttpURLConnection
 import java.net.URL
 
-class LoginController(context: Context) : AsyncTask<String, String, String>() {
+class AuthentuicationUserController(context: Context): AsyncTask<String, String, String>() {
 
-    private val TAG: String = "LoginLog"
+    private val context: Context = context
+
     private var login: String? = null
-    private var senha: String? = null
-    private val context:Context = context
+    private val TAG: String?="SubiscrobeLog"
 
     override fun doInBackground(vararg params: String?): String {
 
+        //saving parameter
         login = params[0]
-        senha = params[1]
-
-        val connection = URL("http://192.168.0.28/dev/API/login/").openConnection() as HttpURLConnection
+        val connection = URL("http://192.168.0.28/dev/API/auth/").openConnection() as HttpURLConnection
         var text: String = ""
 
         try {
@@ -33,29 +33,28 @@ class LoginController(context: Context) : AsyncTask<String, String, String>() {
         } finally {
 
         }
-
         return text
     }
 
     override fun onPostExecute(result: String?) {
         super.onPostExecute(result)
+
         val lista:List<User> = handler(result)
 
         if(lista.isNotEmpty()){
-            for (user:User in lista){
-                if(login == user.login && senha == user.senha){
+            for (user: User in lista){
+                if(user.login == login && user.auth == "t"){
                     //save user database
-                    context.startActivity(Intent(context, MainActivity::class.java))
-                    break
+                    Toast.makeText(context, "Usuario Autenticado", Toast.LENGTH_LONG).show()
                 }else{
-                    Toast.makeText(context, "Usuario invalido ", Toast.LENGTH_SHORT).show()
+                    DialogAutheticationUtil.Companion.showDialogEditPerdon(context)
                 }
             }
         }
-
     }
 
-    private fun handler(result: String?):List<User> {
+    private fun handler(result: String?): List<User> {
+
         val jsonArray = JSONArray(result)
         val list = ArrayList<User>()
         var x: Int = 0
@@ -64,15 +63,12 @@ class LoginController(context: Context) : AsyncTask<String, String, String>() {
             val jsonObject = jsonArray.getJSONObject(x)
             Log.e(TAG, "Objetos ${jsonObject.toString()}")
             val login = jsonObject.getString("login")
-            val senha = jsonObject.getString("senha")
-            list.add(User(login, senha, ""))
+            val auth = jsonObject.getString("auth")
+            list.add(User(login, "", auth))
             x++
         }
 
         return list
-    }
 
-    override fun onPreExecute() {
-        super.onPreExecute()
     }
 }
