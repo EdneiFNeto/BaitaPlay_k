@@ -8,7 +8,9 @@ import android.widget.ListView
 import com.example.baitaplay_k.adapter.ListaDeCanaisAdapter
 import com.example.baitaplay_k.adapter.RecycleViewCanais
 import com.example.baitaplay_k.controller.AuthentuicationUserController
+import com.example.baitaplay_k.dao.UserDao
 import com.example.baitaplay_k.model.Canal
+import com.example.baitaplay_k.model.User
 import com.example.baitaplay_k.util.ListaDeCanalUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -34,22 +36,25 @@ class MainActivity : AppCompatActivity() {
         menu_person.setOnClickListener {
             startActivity(Intent(this, PerfilActivity::class.java))
         }
-
-        //change icon menu click
-        //changeIconMenuClick(listview_main)
-        //eventClickList()
     }
 
     override fun onResume() {
         super.onResume()
 
-        //verify user is authentication
-        AuthentuicationUserController(this).execute("ednei")
+        val dao:List<User> = UserDao.getUser()
+
+        val login:String = dao[0].login
+        val senha:String = dao[0].senha
+
+        //verify status payment user
+        AuthentuicationUserController(this).execute(login, senha)
+
         listview_main.visibility = View.GONE
         menu_toolbar.setImageResource(R.drawable.ic_menu)
     }
 
     private fun eventClickList() {
+
         listview_main.setOnItemClickListener { parent, view, position, id ->
             val canal: Canal = parent.getItemAtPosition(position) as Canal
             val intent = Intent(this, VideoActivity::class.java)

@@ -4,26 +4,22 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AlertDialog
+import com.example.baitaplay_k.AssinaturaActivity
 import com.example.baitaplay_k.FormEditPerfilActivity
 import com.example.baitaplay_k.LoginActivity
-import com.example.baitaplay_k.MainActivity
 import com.example.baitaplay_k.R
 
 class DialogAutheticationUtil {
 
     companion object {
 
-        fun showDialogEditPerdon(context: Context) {
+        fun showDialog(context: Context) {
             val builder = AlertDialog.Builder(context)
-            builder.setMessage("Usuario não tem Assinatura")
-                .setPositiveButton("Assinar", DialogInterface.OnClickListener { dialog, id ->
-                    context.startActivity(Intent(context, FormEditPerfilActivity::class.java))
+            builder.setMessage("Você ainda não tem assinatura\nDeseja fazer uma assinatura ?")
+                .setPositiveButton("Assine agora", DialogInterface.OnClickListener { dialog, id ->
+                    context.startActivity(Intent(context, AssinaturaActivity::class.java))
                 })
-
-                .setNegativeButton("Cancelar", DialogInterface.OnClickListener { dialog, id ->
-                    context.startActivity(Intent(context, LoginActivity::class.java))
-
-                })
+                .setCancelable(false)
                 .setIcon(R.drawable.ic_info)
 
             val alert = builder.create()

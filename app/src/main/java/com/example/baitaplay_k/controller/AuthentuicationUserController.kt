@@ -1,11 +1,9 @@
 package com.example.baitaplay_k.controller
 
 import android.content.Context
-import android.content.Intent
 import android.os.AsyncTask
 import android.util.Log
 import android.widget.Toast
-import com.example.baitaplay_k.MainActivity
 import com.example.baitaplay_k.model.User
 import com.example.baitaplay_k.util.DialogAutheticationUtil
 import org.json.JSONArray
@@ -17,22 +15,29 @@ class AuthentuicationUserController(context: Context): AsyncTask<String, String,
     private val context: Context = context
 
     private var login: String? = null
+    private var senha: String? = null
     private val TAG: String?="SubiscrobeLog"
 
     override fun doInBackground(vararg params: String?): String {
 
-        //saving parameter
+        //saving parameter get activity
         login = params[0]
-        val connection = URL("http://192.168.0.28/dev/API/auth/").openConnection() as HttpURLConnection
+        senha = params[1]
+
+        val connection = URL("https://divertenet.com.br/utils/controll/vrifyUserIsSubscriber.php?login=$login&senha=$senha")
+                .openConnection() as HttpURLConnection
+
         var text: String = ""
 
         try {
+
             connection.connect()
             text = connection.inputStream.use { it.reader().use { reader -> reader.readText()}}
 
         } finally {
 
         }
+
         return text
     }
 
@@ -43,11 +48,14 @@ class AuthentuicationUserController(context: Context): AsyncTask<String, String,
 
         if(lista.isNotEmpty()){
             for (user: User in lista){
-                if(user.login == login && user.auth == "t"){
+
+                //verify users exists and isPaid == true
+                if(user.login == login && user.isPaid){
                     //save user database
                     Toast.makeText(context, "Usuario Autenticado", Toast.LENGTH_LONG).show()
+                    Log.e(TAG, "Usuario ${user.login} esta autenticado ${user.isPaid}")
                 }else{
-                    DialogAutheticationUtil.Companion.showDialogEditPerdon(context)
+                    DialogAutheticationUtil.Companion.showDialog(context)
                 }
             }
         }
@@ -62,9 +70,12 @@ class AuthentuicationUserController(context: Context): AsyncTask<String, String,
 
             val jsonObject = jsonArray.getJSONObject(x)
             Log.e(TAG, "Objetos ${jsonObject.toString()}")
+
             val login = jsonObject.getString("login")
-            val auth = jsonObject.getString("auth")
-            list.add(User(login, "", auth))
+            val isPaid = jsonObject.getBoolean("is_paid")
+
+            list.add(User(login, "", isPaid))
+
             x++
         }
 

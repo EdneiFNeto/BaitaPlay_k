@@ -11,22 +11,18 @@
             android:roundIcon="@mipmap/ic_logo"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-
+        <activity android:name=".AssinaturaActivity">
+        </activity>
         <activity android:name=".CadastroActivity">
         </activity>
-
         <activity android:name=".FormEditPerfilActivity">
         </activity>
-
         <activity android:name=".SplashActivity">
         </activity>
-
         <activity android:name=".PerfilActivity">
         </activity>
-
         <activity android:name=".VideoActivity">
         </activity>
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -34,9 +30,7 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-
         <activity android:name=".LoginActivity">
-
         </activity>
     </application>
 

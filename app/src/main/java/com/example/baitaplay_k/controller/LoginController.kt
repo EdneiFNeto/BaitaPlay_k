@@ -65,7 +65,7 @@ class LoginController(context: Context) : AsyncTask<String, String, String>() {
             Log.e(TAG, "Objetos ${jsonObject.toString()}")
             val login = jsonObject.getString("login")
             val senha = jsonObject.getString("senha")
-            list.add(User(login, senha, ""))
+            list.add(User(login, senha, false))
             x++
         }
 
