@@ -9,7 +9,7 @@
 
     <EditText
             android:background="@drawable/custom_edit_text"
-            android:id="@+id/edt_form_edit_login"
+            android:id="@+id/edt_cadastro_login"
             android:layout_width="0dp"
             android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
 
     <EditText
             android:background="@drawable/custom_edit_text"
-            android:id="@+id/edt_form_edit_senha"
+            android:id="@+id/edt_form_cadastro_senha"
             android:layout_width="0dp"
             android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,19 +36,19 @@
             android:layout_marginEnd="56dp"
             app:layout_constraintHorizontal_bias="1.0"
             android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/edt_form_edit_login"/>
+            app:layout_constraintTop_toBottomOf="@+id/edt_cadastro_login"/>
 
     <Button
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
             android:text="Editar"
             android:background="@drawable/custom_button"
-            android:id="@+id/btn_form_edit_perfil"
+            android:id="@+id/btn_form_cadastro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            app:layout_constraintTop_toBottomOf="@+id/edt_form_edit_senha"
-            app:layout_constraintStart_toStartOf="@+id/edt_form_edit_senha"
-            app:layout_constraintEnd_toEndOf="@+id/edt_form_edit_senha"
+            app:layout_constraintTop_toBottomOf="@+id/edt_form_cadastro_senha"
+            app:layout_constraintStart_toStartOf="@+id/edt_form_cadastro_senha"
+            app:layout_constraintEnd_toEndOf="@+id/edt_form_cadastro_senha"
             app:layout_constraintHorizontal_bias="0.0"/>
 </android.support.constraint.ConstraintLayout>

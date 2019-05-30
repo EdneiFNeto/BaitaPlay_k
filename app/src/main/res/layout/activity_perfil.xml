@@ -40,10 +40,11 @@
 
     ]
     <Button
+
             android:text="Editar"
             android:textSize="18dp"
             android:textColor="@android:color/black"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/custom_button"
             android:layout_width="wrap_content"
             android:textStyle="bold"
             android:layout_height="50dp"

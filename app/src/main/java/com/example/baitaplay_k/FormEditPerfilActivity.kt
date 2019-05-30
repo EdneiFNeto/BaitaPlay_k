@@ -22,9 +22,9 @@ class FormEditPerfilActivity : AppCompatActivity() {
 
         //verify version higher Kitkat
         if (!CheckVersionAndroidUtil.Companion.veryfyVersionHigherKitkat()) {
-            edt_form_edit_login.setBackgroundResource(R.color.colorWhite)
-            edt_form_edit_senha.setBackgroundResource(R.color.colorWhite)
-            btn_form_edit_perfil.setBackgroundResource(R.color.colorPrimaryDark)
+            edt_cadastro_login.setBackgroundResource(R.color.colorWhite)
+            edt_form_cadastro_senha.setBackgroundResource(R.color.colorWhite)
+            btn_form_cadastro.setBackgroundResource(R.color.colorPrimaryDark)
         }
 
         Log.e(TAG, "Version higher KitKat ${Build.VERSION.SDK_INT}")
