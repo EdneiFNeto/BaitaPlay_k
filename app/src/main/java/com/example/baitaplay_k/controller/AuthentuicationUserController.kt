@@ -5,7 +5,7 @@ import android.os.AsyncTask
 import android.util.Log
 import android.widget.Toast
 import com.example.baitaplay_k.model.User
-import com.example.baitaplay_k.util.DialogAutheticationUtil
+import com.example.baitaplay_k.util.DialogUtil
 import org.json.JSONArray
 import java.net.HttpURLConnection
 import java.net.URL
@@ -55,7 +55,7 @@ class AuthentuicationUserController(context: Context): AsyncTask<String, String,
                     Toast.makeText(context, "Usuario Autenticado", Toast.LENGTH_LONG).show()
                     Log.e(TAG, "Usuario ${user.login} esta autenticado ${user.isPaid}")
                 }else{
-                    DialogAutheticationUtil.Companion.showDialog(context)
+                    DialogUtil.Companion.showDialog(context)
                 }
             }
         }

@@ -25,9 +25,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(my_toolbar)
 
-        val canais: List<Canal> = ListaDeCanalUtil.Companion.listaDeNavegacao()
-        listview_main.adapter = ListaDeCanaisAdapter(canais, this)
-
         main_recycle_view.apply {
             adapter = RecycleViewCanais(ListaDeCanalUtil.Companion.listaDeCardCanais())
         }
@@ -48,20 +45,9 @@ class MainActivity : AppCompatActivity() {
 
         //verify status payment user
         AuthentuicationUserController(this).execute(login, senha)
-
-        listview_main.visibility = View.GONE
         menu_toolbar.setImageResource(R.drawable.ic_menu)
     }
 
-    private fun eventClickList() {
-
-        listview_main.setOnItemClickListener { parent, view, position, id ->
-            val canal: Canal = parent.getItemAtPosition(position) as Canal
-            val intent = Intent(this, VideoActivity::class.java)
-            intent.putExtra("canal", canal)
-            startActivity(intent)
-        }
-    }
 
     private fun changeIconMenuClick(listaCanais: ListView) {
         menu_toolbar.setOnClickListener {
