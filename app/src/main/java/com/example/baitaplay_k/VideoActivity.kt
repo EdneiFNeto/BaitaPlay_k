@@ -8,10 +8,13 @@ import android.util.Log
 import android.view.View
 import android.widget.ListView
 import com.example.baitaplay_k.adapter.ListaDeCanaisAdapter
+import com.example.baitaplay_k.dao.UserDao
 import com.example.baitaplay_k.model.Canal
 import com.example.baitaplay_k.model.NomeCanal
+import com.example.baitaplay_k.model.User
 import com.example.baitaplay_k.util.ListaDeCanalUtil
 import com.example.baitaplay_k.util.SelectCanalUtil
+import com.example.baitaplay_k.util.VerifyUserSubscriUtil
 import kotlinx.android.synthetic.main.activity_play_video.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -40,6 +43,10 @@ class VideoActivity : AppCompatActivity() {
         changeIconMenuClick(listaCanais)
         listaCanais.adapter = ListaDeCanaisAdapter(ListaDeCanalUtil.Companion.listaDeNavegacao(), this)
 
+        eventClickLis(listaCanais)
+    }
+
+    private fun eventClickLis(listaCanais: ListView) {
         listaCanais.setOnItemClickListener { parent, view, position, id ->
             val canal: Canal = parent.getItemAtPosition(position) as Canal
             playVideoUsingClickList(position, canal)
@@ -52,6 +59,7 @@ class VideoActivity : AppCompatActivity() {
         val canal: Canal = intent.extras.get("canal") as Canal
 
         if (canal != null) {
+
             text_titulo_canal.text = canal.titulo
             text_descr_video.text = canal.descr
 
@@ -118,11 +126,11 @@ class VideoActivity : AppCompatActivity() {
     //play canal
     private fun play(canal: String) {
 
-        val streamUrl="http://189.45.13.225/stream.php.m3u8?user=baita&pass=2018tv&token=1553733132&resptime=109&s=stream"
+        val streamUrl="http://189.45.13.225/stream.php.m3u8?user=baita&pass=2018tv&token=1553733132&" +
+                "resptime=109&s=stream"
+
         video_view.setVideoURI(Uri.parse(streamUrl+""+canal))
         video_view.start()
-
-        Log.e(TAG, "Stream URL: $streamUrl$canal")
     }
 
 }

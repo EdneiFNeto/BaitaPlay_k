@@ -17,9 +17,11 @@ class DialogUtil {
             val builder = AlertDialog.Builder(context)
             builder.setMessage("Você ainda não tem assinatura\nDeseja fazer uma assinatura ?")
                 .setPositiveButton("Assine agora", DialogInterface.OnClickListener { dialog, id ->
+                    //send activity signature
                     context.startActivity(Intent(context, AssinaturaActivity::class.java))
                 })
                 .setNegativeButton("Cancelar", DialogInterface.OnClickListener{dialog, id->
+                    //return login
                     context.startActivity(Intent(context, LoginActivity::class.java))
                 })
                 .setCancelable(false)

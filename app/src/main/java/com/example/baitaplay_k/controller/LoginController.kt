@@ -6,6 +6,7 @@ import android.os.AsyncTask
 import android.os.Handler
 import android.util.Log
 import com.example.baitaplay_k.MainActivity
+import com.example.baitaplay_k.dao.UserDao
 import com.example.baitaplay_k.model.User
 import com.example.baitaplay_k.util.DialogUtil
 import org.json.JSONArray
@@ -13,20 +14,22 @@ import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL
 
-class LoginController(context: Context) : AsyncTask<String, String, String>() {
+class LoginController(context: Context, login: String, senha: String) : AsyncTask<String, String, String>() {
 
     private val TAG: String = "LoginLog"
-    private var login: String? = null
-    private var senha: String? = null
+    private var login: String = login
+    private var senha: String = senha
     private val context: Context = context
 
     override fun doInBackground(vararg params: String?): String {
 
-        login = params[0]
-        senha = params[1]
+        val connection =
+            URL(
+                "https://divertenet.com.br/utils/controll/" +
+                        "LoginAppBaitaplayController.php?login=$login&senha=$senha"
+            )
+                .openConnection() as HttpURLConnection
 
-        val connection = URL("http://192.168.43.124/dev/API/login/").openConnection() as HttpURLConnection
-        //val connection = URL("http://192.168.0.28/dev/API/login/").openConnection() as HttpURLConnection
         var text: String = ""
 
         try {
@@ -42,45 +45,45 @@ class LoginController(context: Context) : AsyncTask<String, String, String>() {
 
     override fun onPostExecute(result: String?) {
         super.onPostExecute(result)
-        val lista: List<User> = handler(result)
 
+        val resp = handler(result)
         try {
-            if (lista.isNotEmpty() || lista.size <= 0) {
-                for (user: User in lista) {
-                    if (login == user.login && senha == user.senha) {
-                        //save user database
-                        context.startActivity(Intent(context, MainActivity::class.java))
-                    } else {
-                        DialogUtil.Companion.userNotauthorized(context)
-                    }
+            if (resp != null) {
+                if (resp == "200") {
+
+                    //save users data base
+                    val dao  = UserDao()
+                    val user = User(login, senha, false)
+                    dao.save(user)
+                    context.startActivity(Intent(context, MainActivity::class.java))
+                }
+                if (resp == "401") {
+                    DialogUtil.Companion.userNotauthorized(context)
+                }
+                if (resp == "500") {
+                    DialogUtil.Companion.errorServer(context)
+                } else {
+                    DialogUtil.Companion.userNotauthorized(context)
                 }
             } else {
-                Handler().post(Runnable {
-                    DialogUtil.Companion.errorServer(context)
-                })
+                Log.e(TAG, "Null")
             }
+
         } catch (e: Exception) {
-            Handler().post(Runnable {
-                DialogUtil.Companion.errorServer(context)
-            })
+
         }
     }
 
-    private fun handler(result: String?): List<User> {
+    private fun handler(result: String?): String {
+
         val jsonArray = JSONArray(result)
-        val list = ArrayList<User>()
         var x: Int = 0
-        while (x < jsonArray.length()) {
+        var resp = ""
 
-            val jsonObject = jsonArray.getJSONObject(x)
-            Log.e(TAG, "Objetos ${jsonObject.toString()}")
-            val login = jsonObject.getString("login")
-            val senha = jsonObject.getString("senha")
-            list.add(User(login, senha, false))
-            x++
-        }
+        val jsonObject = jsonArray.getJSONObject(x)
+        resp = jsonObject.getString("resp")
 
-        return list
+        return resp
     }
 
 }

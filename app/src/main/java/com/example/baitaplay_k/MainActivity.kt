@@ -39,12 +39,12 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         val dao:List<User> = UserDao.getUser()
-
         val login:String = dao[0].login
         val senha:String = dao[0].senha
 
         //verify status payment user
         AuthentuicationUserController(this).execute(login, senha)
+
         menu_toolbar.setImageResource(R.drawable.ic_menu)
     }
 
