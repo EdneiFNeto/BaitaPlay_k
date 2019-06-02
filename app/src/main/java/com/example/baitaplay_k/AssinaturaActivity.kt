@@ -4,9 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.baitaplay_k.dao.UserDao
 import com.example.baitaplay_k.model.User
-import com.example.baitaplay_k.util.VerifyUserSubscriUtil
+import com.example.baitaplay_k.tasks.VerifyUserSubscriTasks
 import kotlinx.android.synthetic.main.activity_assinatura.*
-import java.net.URLEncoder
 
 class AssinaturaActivity : AppCompatActivity() {
 
@@ -24,7 +23,7 @@ class AssinaturaActivity : AppCompatActivity() {
         val senha:String = dao[0].senha
 
         //verify user is subscribe
-        VerifyUserSubscriUtil(this, login, senha).execute()
+        VerifyUserSubscriTasks(this, login, senha).execute()
 
         web_view_assinatura.settings.javaScriptEnabled = true
         web_view_assinatura.loadUrl("https://pagamentos.nbtelecom.com.br/checkout_baitaplay_mobile.php?login=ednei")

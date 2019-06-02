@@ -4,6 +4,11 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AlertDialog
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.Toast
 import com.example.baitaplay_k.AssinaturaActivity
 import com.example.baitaplay_k.FormEditPerfilActivity
 import com.example.baitaplay_k.LoginActivity
@@ -20,7 +25,7 @@ class DialogUtil {
                     //send activity signature
                     context.startActivity(Intent(context, AssinaturaActivity::class.java))
                 })
-                .setNegativeButton("Cancelar", DialogInterface.OnClickListener{dialog, id->
+                .setNegativeButton("Cancelar", DialogInterface.OnClickListener { dialog, id ->
                     //return login
                     context.startActivity(Intent(context, LoginActivity::class.java))
                 })
@@ -69,6 +74,23 @@ class DialogUtil {
             val alert = builder.create()
             alert.setTitle("Aviso")
             alert.show()
+        }
+
+        fun updateUser(context: Context, window: Window) {
+            val view: View = window.decorView
+            val viewCriada = LayoutInflater.from(context).inflate(R.layout.editar_user_layout, view as ViewGroup, false)
+
+            AlertDialog.Builder(context)
+                .setPositiveButton("Editar", DialogInterface.OnClickListener { dialog, which ->
+                    Toast.makeText(context, "Usuário atualizado com sucesso !", Toast.LENGTH_LONG).show()
+                    dialog.dismiss()
+                })
+                .setNegativeButton("Cancelar", DialogInterface.OnClickListener { dialog, which ->
+                    dialog.dismiss()
+                })
+                .setTitle(R.string.update_user)
+                .setView(viewCriada)
+                .show()
         }
     }
 }

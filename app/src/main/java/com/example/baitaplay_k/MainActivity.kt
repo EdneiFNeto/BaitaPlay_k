@@ -5,11 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
-import com.example.baitaplay_k.adapter.ListaDeCanaisAdapter
 import com.example.baitaplay_k.adapter.RecycleViewCanais
 import com.example.baitaplay_k.controller.AuthentuicationUserController
 import com.example.baitaplay_k.dao.UserDao
-import com.example.baitaplay_k.model.Canal
 import com.example.baitaplay_k.model.User
 import com.example.baitaplay_k.util.ListaDeCanalUtil
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,6 +31,11 @@ class MainActivity : AppCompatActivity() {
         menu_person.setOnClickListener {
             startActivity(Intent(this, PerfilActivity::class.java))
         }
+
+        menu_logout.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 
     override fun onResume() {
@@ -44,7 +47,6 @@ class MainActivity : AppCompatActivity() {
 
         //verify status payment user
         AuthentuicationUserController(this).execute(login, senha)
-
         menu_toolbar.setImageResource(R.drawable.ic_menu)
     }
 

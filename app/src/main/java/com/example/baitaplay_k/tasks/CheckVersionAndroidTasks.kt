@@ -1,8 +1,8 @@
-package com.example.baitaplay_k.util
+package com.example.baitaplay_k.tasks
 
 import android.os.Build
 
-class CheckVersionAndroidUtil {
+class CheckVersionAndroidTasks {
 
     companion object {
 

@@ -1,4 +1,4 @@
-package com.example.baitaplay_k.util
+package com.example.baitaplay_k.tasks
 
 import android.content.Context
 import android.content.Intent
@@ -10,7 +10,7 @@ import org.json.JSONArray
 import java.net.HttpURLConnection
 import java.net.URL
 
-class VerifyUserSubscriUtil(context: Context, login:String, senha:String): AsyncTask<String, String, String>() {
+class VerifyUserSubscriTasks(context: Context, login:String, senha:String): AsyncTask<String, String, String>() {
 
     private val login: String = login
     private val senha: String = senha

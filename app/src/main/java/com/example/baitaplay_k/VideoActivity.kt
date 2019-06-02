@@ -4,17 +4,12 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ListView
 import com.example.baitaplay_k.adapter.ListaDeCanaisAdapter
-import com.example.baitaplay_k.dao.UserDao
 import com.example.baitaplay_k.model.Canal
-import com.example.baitaplay_k.model.NomeCanal
-import com.example.baitaplay_k.model.User
 import com.example.baitaplay_k.util.ListaDeCanalUtil
 import com.example.baitaplay_k.util.SelectCanalUtil
-import com.example.baitaplay_k.util.VerifyUserSubscriUtil
 import kotlinx.android.synthetic.main.activity_play_video.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -37,6 +32,11 @@ class VideoActivity : AppCompatActivity() {
         //go activity Person
         menu_person.setOnClickListener {
             startActivity(Intent(this, PerfilActivity::class.java))
+        }
+
+        menu_logout.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
 
         //change icon menu click

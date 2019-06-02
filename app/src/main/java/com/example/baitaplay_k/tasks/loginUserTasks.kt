@@ -1,11 +1,11 @@
-package com.example.baitaplay_k.controller
+package com.example.baitaplay_k.tasks
 
 import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
-import android.os.Handler
 import android.util.Log
 import com.example.baitaplay_k.MainActivity
+import com.example.baitaplay_k.dao.DataBaseHandler
 import com.example.baitaplay_k.dao.UserDao
 import com.example.baitaplay_k.model.User
 import com.example.baitaplay_k.util.DialogUtil
@@ -14,12 +14,9 @@ import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL
 
-class LoginController(context: Context, login: String, senha: String) : AsyncTask<String, String, String>() {
+class loginUserTasks(val context: Context, val login: String, val senha: String) : AsyncTask<String, String, String>() {
 
     private val TAG: String = "LoginLog"
-    private var login: String = login
-    private var senha: String = senha
-    private val context: Context = context
 
     override fun doInBackground(vararg params: String?): String {
 
@@ -50,13 +47,18 @@ class LoginController(context: Context, login: String, senha: String) : AsyncTas
         try {
             if (resp != null) {
                 if (resp == "200") {
-
                     //save users data base
                     val dao  = UserDao()
                     val user = User(login, senha, false)
-                    dao.save(user)
-                    context.startActivity(Intent(context, MainActivity::class.java))
+                    val db = DataBaseHandler(context)
+
+                    Log.e(TAG, "Users: ${user.toString()}" )
+                    db.save(user)
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    context.startActivity(intent)
                 }
+
                 if (resp == "401") {
                     DialogUtil.Companion.userNotauthorized(context)
                 }

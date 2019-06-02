@@ -12,8 +12,8 @@ class UserDao() {
 
     companion object {
 
-        /*fun getUser():ArrayList<User>{
-            return lis
-        }*/
+        fun getUser():List<User>{
+            return listOf<User>(User("ednei", "123456", false))
+        }
     }
 }

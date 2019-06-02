@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BAITAPLAY</string>
     <string name="btn_entrar">Entrar</string>
+    <string name="update_user">Atualizar Usuario</string>
 </resources>
