@@ -4,10 +4,8 @@ import android.database.Cursor
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import com.example.baitaplay_k.dao.DataBaseHandler
 import com.example.baitaplay_k.tasks.VerifyExistisUserTasks
-import com.example.baitaplay_k.tasks.loginUserTasks
 
 class SplashActivity : AppCompatActivity() {
 
@@ -32,8 +30,6 @@ class SplashActivity : AppCompatActivity() {
             while (cursor.moveToNext()) {
                 login = cursor.getString(cursor.getColumnIndex("login"))
                 senha = cursor.getString(cursor.getColumnIndex("senha"))
-                Log.e(TAG, "Users ${cursor.getString(cursor.getColumnIndex("login"))}")
-                Log.e(TAG, "Users ${cursor.getString(cursor.getColumnIndex("senha"))}")
             }
 
             Handler().postDelayed(Runnable {

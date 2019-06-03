@@ -1,16 +1,19 @@
 package com.example.baitaplay_k
 
 import android.content.Intent
+import android.database.Cursor
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
 import com.example.baitaplay_k.adapter.RecycleViewCanais
 import com.example.baitaplay_k.controller.AuthentuicationUserController
+import com.example.baitaplay_k.dao.DataBaseHandler
 import com.example.baitaplay_k.dao.UserDao
 import com.example.baitaplay_k.model.User
 import com.example.baitaplay_k.util.ListaDeCanalUtil
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_perfil.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : AppCompatActivity() {
@@ -41,12 +44,21 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        val dao:List<User> = UserDao.getUser()
-        val login:String = dao[0].login
-        val senha:String = dao[0].senha
+        var login:String?=null
+        var senha:String?=null
+
+        val db = DataBaseHandler(this)
+        var cursor: Cursor = db.select()
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                login = cursor.getString(cursor.getColumnIndex("login")).toUpperCase()
+                senha = cursor.getString(cursor.getColumnIndex("senha")).toUpperCase()
+            }
+        }
 
         //verify status payment user
-        AuthentuicationUserController(this).execute(login, senha)
+        AuthentuicationUserController(this, User(login.toString(), senha.toString(), false)).execute()
         menu_toolbar.setImageResource(R.drawable.ic_menu)
     }
 

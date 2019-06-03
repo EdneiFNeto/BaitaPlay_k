@@ -6,7 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
-import com.example.baitaplay_k.tasks.loginUserTasks
+import com.example.baitaplay_k.tasks.LoginUserTasks
 import com.example.baitaplay_k.util.DialogUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
 
         btn_entrar.setOnClickListener {
             if (!edt_login.text.isEmpty() && !edt_senha.text.isEmpty()) {
-                loginUserTasks(
+                LoginUserTasks(
                     this,
                     edt_login.text.toString(),
                     edt_senha.text.toString()

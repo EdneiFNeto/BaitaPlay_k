@@ -22,8 +22,8 @@ class FormEditPerfilActivity : AppCompatActivity() {
 
         //verify version higher Kitkat
         if (!CheckVersionAndroidTasks.Companion.veryfyVersionHigherKitkat()) {
-            edt_cadastro_login.setBackgroundResource(R.color.colorWhite)
-            edt_form_cadastro_senha.setBackgroundResource(R.color.colorWhite)
+            edt_cadastro_email_.setBackgroundResource(R.color.colorWhite)
+            edt_form_cadastro_login_.setBackgroundResource(R.color.colorWhite)
             btn_form_cadastro.setBackgroundResource(R.color.colorPrimaryDark)
         }
 

@@ -14,7 +14,7 @@ import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL
 
-class loginUserTasks(val context: Context, val login: String, val senha: String) : AsyncTask<String, String, String>() {
+class UpdateuserTask(val context: Context, val user:User) : AsyncTask<String, String, String>() {
 
     private val TAG: String = "LoginLog"
 
@@ -23,7 +23,7 @@ class loginUserTasks(val context: Context, val login: String, val senha: String)
         val connection =
             URL(
                 "https://divertenet.com.br/utils/controll/" +
-                        "LoginAppBaitaplayController.php?login=$login&senha=$senha"
+                        "UpdateUserController.php?login=${user.login}&senha=${user.senha}"
             )
                 .openConnection() as HttpURLConnection
 
@@ -47,32 +47,20 @@ class loginUserTasks(val context: Context, val login: String, val senha: String)
         try {
             if (resp != null) {
                 if (resp == "200") {
-                    //save users data base
-                    val dao  = UserDao()
-                    val user = User(login, senha, false)
-                    val db = DataBaseHandler(context)
-
-                    Log.e(TAG, "Users: ${user.toString()}" )
-                    db.save(user)
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    context.startActivity(intent)
+                    Log.e(TAG, "Log 200")
                 }
-
                 if (resp == "401") {
-                    DialogUtil.Companion.userNotauthorized(context)
+                    Log.e(TAG, "Log 401")
                 }
                 if (resp == "500") {
-                    DialogUtil.Companion.errorServer(context)
-                } else {
-                    DialogUtil.Companion.userNotauthorized(context)
+                    Log.e(TAG, "Log 500")
                 }
             } else {
                 Log.e(TAG, "Null")
             }
 
         } catch (e: Exception) {
-
+            Log.e(TAG, "Error ${e.printStackTrace()}")
         }
     }
 

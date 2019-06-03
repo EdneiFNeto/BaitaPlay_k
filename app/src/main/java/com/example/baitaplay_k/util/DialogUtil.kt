@@ -4,21 +4,30 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.baitaplay_k.AssinaturaActivity
-import com.example.baitaplay_k.FormEditPerfilActivity
 import com.example.baitaplay_k.LoginActivity
 import com.example.baitaplay_k.R
+import com.example.baitaplay_k.dao.DataBaseHandler
+import com.example.baitaplay_k.model.User
+import com.example.baitaplay_k.tasks.UpdateuserTask
+import kotlinx.android.synthetic.main.editar_user_layout.view.*
 
 class DialogUtil {
 
+
     companion object {
 
-        fun showDialog(context: Context) {
+        private val TAG="DialogLog"
+
+        fun dialogNotSgnature(context: Context) {
             val builder = AlertDialog.Builder(context)
             builder.setMessage("Você ainda não tem assinatura\nDeseja fazer uma assinatura ?")
                 .setPositiveButton("Assine agora", DialogInterface.OnClickListener { dialog, id ->
@@ -79,10 +88,18 @@ class DialogUtil {
         fun updateUser(context: Context, window: Window) {
             val view: View = window.decorView
             val viewCriada = LayoutInflater.from(context).inflate(R.layout.editar_user_layout, view as ViewGroup, false)
+            val db = DataBaseHandler(context)
 
             AlertDialog.Builder(context)
                 .setPositiveButton("Editar", DialogInterface.OnClickListener { dialog, which ->
-                    Toast.makeText(context, "Usuário atualizado com sucesso !", Toast.LENGTH_LONG).show()
+                    val login = viewCriada.edt_login_dialog_perfil.text
+                    val senha = viewCriada.edt_senha_dialog_perfil.text
+                    var user = User(login.toString(), senha.toString(), false)
+                    if(db.delete(user)){
+                        db.save(user)
+                        //update user in webservice
+                        UpdateuserTask(context, user).execute()
+                    }
                     dialog.dismiss()
                 })
                 .setNegativeButton("Cancelar", DialogInterface.OnClickListener { dialog, which ->

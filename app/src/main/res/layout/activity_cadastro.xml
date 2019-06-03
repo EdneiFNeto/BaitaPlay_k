@@ -20,33 +20,71 @@
     <EditText
             android:inputType="text"
             android:textColor="@color/colorPrimary"
-            android:hint="Login"
+            android:hint="Nome Completo"
             android:textColorHint="@android:color/black"
             android:background="@drawable/custom_edit_text"
-            android:id="@+id/edt_cadastro_login"
+            android:id="@+id/edt_cadastro_nome"
             android:layout_width="0dp"
             android:paddingLeft="12dp"
             android:layout_height="50dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginLeft="56dp"
-            android:layout_marginStart="56dp" android:layout_marginRight="56dp" android:layout_marginEnd="56dp"
-            android:layout_marginTop="80dp" app:layout_constraintTop_toBottomOf="@+id/imageView"/>
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" android:layout_marginStart="56dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="56dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="56dp" android:layout_marginEnd="56dp"/>
+
+    <EditText
+            android:inputType="text"
+            android:textColor="@color/colorPrimary"
+            android:hint="CPF
+"
+            android:textColorHint="@android:color/black"
+            android:background="@drawable/custom_edit_text"
+            android:id="@+id/edt_cadastro_email_"
+            android:layout_width="0dp"
+            android:paddingLeft="12dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            android:layout_marginLeft="56dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginRight="56dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/edt_cadastro_nome"/>
 
     <EditText
             android:inputType="text"
             android:textColorHint="@android:color/black"
             android:textColor="@color/colorPrimary"
-            android:hint="Email"
+            android:hint="Login"
             android:background="@drawable/custom_edit_text"
             android:id="@+id/edt_cadastro_email"
             android:layout_width="0dp"
             android:paddingLeft="12dp"
             android:layout_height="50dp"
-            app:layout_constraintStart_toStartOf="@+id/edt_form_cadastro_senha"
-            app:layout_constraintEnd_toEndOf="@+id/edt_form_cadastro_senha" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/edt_form_cadastro_senha"
+            app:layout_constraintStart_toStartOf="@+id/edt_form_cadastro_login_"
+            app:layout_constraintEnd_toEndOf="@+id/edt_form_cadastro_login_" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/edt_form_cadastro_login_"
             app:layout_constraintHorizontal_bias="0.0"/>
 
+    <EditText
+
+            android:textColorHint="@android:color/black"
+            android:hint="Email
+"
+            android:inputType="textPassword"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/custom_edit_text"
+            android:id="@+id/edt_form_cadastro_login_"
+            android:layout_width="0dp"
+            android:paddingLeft="12dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/edt_cadastro_email_"
+            app:layout_constraintStart_toStartOf="@+id/edt_cadastro_email_"
+            app:layout_constraintEnd_toEndOf="@+id/edt_cadastro_email_"/>
 
     <EditText
 
@@ -55,14 +93,15 @@
             android:inputType="textPassword"
             android:textColor="@color/colorPrimary"
             android:background="@drawable/custom_edit_text"
-            android:id="@+id/edt_form_cadastro_senha"
+            android:id="@+id/edt_form_cadastro_cpf"
             android:layout_width="0dp"
             android:paddingLeft="12dp"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/edt_cadastro_login"
-            app:layout_constraintStart_toStartOf="@+id/edt_cadastro_login"
-            app:layout_constraintEnd_toEndOf="@+id/edt_cadastro_login"/>
+            app:layout_constraintTop_toBottomOf="@+id/edt_cadastro_email"
+            app:layout_constraintEnd_toEndOf="@+id/edt_cadastro_email"
+            app:layout_constraintStart_toStartOf="@+id/edt_cadastro_email"/>
+
     <Button
             android:textSize="18dp"
             android:textStyle="bold"
@@ -72,11 +111,10 @@
             android:textColor="@color/colorPrimary"
             android:layout_height="wrap_content"
             android:id="@+id/btn_cadastrar"
-            app:layout_constraintEnd_toEndOf="@+id/edt_cadastro_email"
-            app:layout_constraintStart_toStartOf="@+id/edt_cadastro_email"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/edt_cadastro_email"
-            app:layout_constraintHorizontal_bias="0.497"/>
+            app:layout_constraintTop_toBottomOf="@+id/edt_form_cadastro_cpf"
+            app:layout_constraintStart_toStartOf="@+id/edt_form_cadastro_cpf"
+            app:layout_constraintEnd_toEndOf="@+id/edt_form_cadastro_cpf"/>
 
 
 </android.support.constraint.ConstraintLayout>
