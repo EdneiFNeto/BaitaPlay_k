@@ -1,7 +1,9 @@
 package com.example.baitaplay_k
 
+import android.database.Cursor
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.baitaplay_k.dao.DataBaseHandler
 import com.example.baitaplay_k.dao.UserDao
 import com.example.baitaplay_k.model.User
 import com.example.baitaplay_k.tasks.VerifyUserSubscriTasks
@@ -17,13 +19,21 @@ class AssinaturaActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        val dao:List<User> = UserDao.getUser()
+        var login:String?=null
+        var senha:String?=null
 
-        val login:String = dao[0].login
-        val senha:String = dao[0].senha
+        val db = DataBaseHandler(this)
+        var cursor: Cursor = db.select()
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                login = cursor.getString(cursor.getColumnIndex("login")).toUpperCase()
+                senha = cursor.getString(cursor.getColumnIndex("senha")).toUpperCase()
+            }
+        }
 
         //verify user is subscribe
-        VerifyUserSubscriTasks(this, login, senha).execute()
+        VerifyUserSubscriTasks(this, login.toString(), senha.toString()).execute()
 
         web_view_assinatura.settings.javaScriptEnabled = true
         web_view_assinatura.loadUrl("https://pagamentos.nbtelecom.com.br/checkout_baitaplay_mobile.php?login=ednei")

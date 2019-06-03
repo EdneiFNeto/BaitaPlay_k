@@ -1,4 +1,4 @@
-package com.example.baitaplay_k.controller
+package com.example.baitaplay_k.tasks
 
 import android.content.Context
 import android.os.AsyncTask
@@ -9,7 +9,7 @@ import org.json.JSONArray
 import java.net.HttpURLConnection
 import java.net.URL
 
-class AuthentuicationUserController(val context: Context, val user:User) : AsyncTask<String, String, String>() {
+class AuthentuicationUserTasks(val context: Context, val user:User) : AsyncTask<String, String, String>() {
 
     private val TAG: String? = "SubiscrobeLog"
 

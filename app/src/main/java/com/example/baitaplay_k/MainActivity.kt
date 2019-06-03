@@ -7,13 +7,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ListView
 import com.example.baitaplay_k.adapter.RecycleViewCanais
-import com.example.baitaplay_k.controller.AuthentuicationUserController
+import com.example.baitaplay_k.tasks.AuthentuicationUserTasks
 import com.example.baitaplay_k.dao.DataBaseHandler
-import com.example.baitaplay_k.dao.UserDao
 import com.example.baitaplay_k.model.User
 import com.example.baitaplay_k.util.ListaDeCanalUtil
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_perfil.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : AppCompatActivity() {
@@ -58,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //verify status payment user
-        AuthentuicationUserController(this, User(login.toString(), senha.toString(), false)).execute()
+        AuthentuicationUserTasks(this, User(login.toString(), senha.toString(), false)).execute()
         menu_toolbar.setImageResource(R.drawable.ic_menu)
     }
 
