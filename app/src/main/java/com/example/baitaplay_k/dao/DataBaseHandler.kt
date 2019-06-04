@@ -49,7 +49,7 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DB_NAME,
             if (result == -1.toLong()) {
                 Toast.makeText(context, "Failed save", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(context, "User save Success !", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Save user whit success !", Toast.LENGTH_LONG).show()
             }
         }catch (ex:SQLiteException){
             Log.e(TAG, "Error: ${ex.printStackTrace()}")
@@ -84,7 +84,7 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DB_NAME,
         }
     }
 
-    fun delete(user: User): Boolean {
+    fun delete(): Boolean {
         val db = this.writableDatabase
         try {
             val res = db.delete(TABLE_NAME, null, null)

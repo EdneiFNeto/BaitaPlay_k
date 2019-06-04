@@ -29,9 +29,11 @@ class LoginUserTasks(val context: Context, val login: String, val senha: String)
         try {
             if (resp != null) {
                 if (resp == "200") {
-                    val user = User(login, senha, false)
+
+                    //delete user
                     val db = DataBaseHandler(context)
-                    db.save(user)
+                    db.delete()//delete all
+                    db.save(User(login, senha, false))
                     irParaMainActivity()
                 }
                 if (resp == "401") {
@@ -44,13 +46,12 @@ class LoginUserTasks(val context: Context, val login: String, val senha: String)
                 Log.e(TAG, "Null")
             }
         } catch (e: Exception) {
-                Log.e(TAG, "Error ${e.printStackTrace()}")
+            Log.e(TAG, "Error ${e.printStackTrace()}")
         }
     }
 
     private fun irParaMainActivity() {
         val intent = Intent(context, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
         context.startActivity(intent)
     }
 

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.database.Cursor
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ListView
 import com.example.baitaplay_k.adapter.RecycleViewCanais
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 class MainActivity : AppCompatActivity() {
 
     private var clicouNoBotao: Boolean = false
+    private val TAG: String ="MainLog"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,16 +44,17 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        var login:String?=null
-        var senha:String?=null
+        var login: String? = null
+        var senha: String? = null
 
         val db = DataBaseHandler(this)
         var cursor: Cursor = db.select()
 
         if (cursor != null) {
             while (cursor.moveToNext()) {
-                login = cursor.getString(cursor.getColumnIndex("login")).toUpperCase()
-                senha = cursor.getString(cursor.getColumnIndex("senha")).toUpperCase()
+                login = cursor.getString(cursor.getColumnIndex("login"))
+                senha = cursor.getString(cursor.getColumnIndex("senha"))
+                Log.e(TAG, "Users $login\n$senha")
             }
         }
 

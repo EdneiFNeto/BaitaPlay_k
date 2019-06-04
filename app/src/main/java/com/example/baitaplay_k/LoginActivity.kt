@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
+import com.example.baitaplay_k.tasks.CheckVersionAndroidTasks
 import com.example.baitaplay_k.tasks.LoginUserTasks
 import com.example.baitaplay_k.util.DialogUtil
 import kotlinx.android.synthetic.main.activity_login.*
@@ -46,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun mudarCorAndroidVersion19(login: EditText, senha: EditText) {
-        if (Build.VERSION.SDK_INT <= 19) {
+        if (!CheckVersionAndroidTasks.Companion.veryfyVersionHigherKitkat()) {
             login.setBackgroundColor(Color.WHITE)
             senha.setBackgroundColor(Color.WHITE)
             btn_entrar.setBackgroundResource(R.color.primary_dark)

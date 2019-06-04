@@ -14,17 +14,21 @@
              android:layout_height="wrap_content"
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintEnd_toEndOf="parent"
-             android:id="@+id/include_toolbar"/>
+             android:id="@+id/include_toolbar" app:layout_constraintTop_toTopOf="parent"/>
 
     <VideoView
+            android:background="@color/colorPrimaryDark"
             android:id="@+id/video_view"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="300dp"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_toolbar"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/include_toolbar" android:layout_marginTop="24dp"/>
 
     <RatingBar
+            android:background="@color/colorPrimary"
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:scaleX=".5"
@@ -39,7 +43,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/video_view"/>
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/video_view"/>
 
     <TextView
 
@@ -55,7 +59,7 @@
             android:layout_marginStart="8dp"
             app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="parent"
-    />
+            android:layout_marginRight="36dp" android:layout_marginEnd="36dp"/>
 
 
     <TextView
@@ -80,8 +84,19 @@
             android:layout_width="300dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/video"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/video_view"/>
+
+    <ProgressBar
+            android:visibility="gone"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            app:layout_constraintTop_toTopOf="@+id/video_view"
+            app:layout_constraintBottom_toBottomOf="@+id/video_view"
+            app:layout_constraintEnd_toEndOf="@+id/video_view"
+            app:layout_constraintStart_toStartOf="@+id/video_view"/>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -33,7 +33,9 @@
             android:hint="Senha"
             android:background="@drawable/custom_edit_text"
             android:layout_width="0dp"
-            android:layout_height="50dp" app:layout_constraintEnd_toEndOf="@+id/edt_login_dialog_perfil"
-            app:layout_constraintStart_toStartOf="@+id/edt_login_dialog_perfil" android:layout_marginTop="16dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="@+id/edt_login_dialog_perfil"
+            app:layout_constraintStart_toStartOf="@+id/edt_login_dialog_perfil"
+            android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/edt_login_dialog_perfil"/>
 </android.support.constraint.ConstraintLayout>

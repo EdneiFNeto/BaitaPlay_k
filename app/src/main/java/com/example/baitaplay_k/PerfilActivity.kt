@@ -1,12 +1,17 @@
 package com.example.baitaplay_k
 
+import android.content.Intent
 import android.database.Cursor
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
 import com.example.baitaplay_k.dao.DataBaseHandler
+import com.example.baitaplay_k.tasks.CheckVersionAndroidTasks
 import com.example.baitaplay_k.util.DialogUtil
 import com.example.baitaplay_k.util.ShowDialogEditPersonUtil
 import kotlinx.android.synthetic.main.activity_perfil.*
+import kotlinx.android.synthetic.main.editar_user_layout.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class PerfilActivity : AppCompatActivity() {
 
@@ -21,10 +26,16 @@ class PerfilActivity : AppCompatActivity() {
         atualizar()
         btn_editar.setOnClickListener {
             DialogUtil.Companion.updateUser(this, window)
+
+        }
+
+        menu_logout.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
     }
 
-    fun atualizar(){
+    fun atualizar() {
         val db = DataBaseHandler(this)
         var cursor: Cursor = db.select()
         if (cursor != null) {
@@ -34,6 +45,10 @@ class PerfilActivity : AppCompatActivity() {
             }
         } else {
             text_login_perfil.text = "Nome nãoi cadastrad"
+        }
+
+        if (!CheckVersionAndroidTasks.Companion.veryfyVersionHigherKitkat()) {
+            btn_editar.setBackgroundResource(R.color.primary_dark)
         }
     }
 }

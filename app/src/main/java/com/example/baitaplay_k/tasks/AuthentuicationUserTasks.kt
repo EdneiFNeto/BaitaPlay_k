@@ -41,6 +41,7 @@ class AuthentuicationUserTasks(val context: Context, val user:User) : AsyncTask<
 
         if (resp!=null){
             if (resp != "200") {
+                //verify user is subscribe
                 DialogUtil.Companion.dialogNotSgnature(context)
             }
         }

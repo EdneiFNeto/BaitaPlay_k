@@ -37,7 +37,7 @@ class ListaDeCanalUtil {
                 Canal(NomeCanal.HELLO_TV.nome, R.drawable.hello_tv, DescricaoCanal.HELLO_TV.descr),
                 Canal(NomeCanal.FULL_MUSIC.nome, R.drawable.full_music, DescricaoCanal.FULL_MUSIC.descr),
                 Canal(NomeCanal.YOU_CHANNEL.nome, R.drawable.you_channel, DescricaoCanal.YOU_CHANNEL.descr),
-                Canal(NomeCanal.CANAL_PROMESSA.nome, R.drawable.you_channel, DescricaoCanal.CANAL_PROMESSA.descr),
+                Canal(NomeCanal.CANAL_PROMESSA.nome, R.drawable.ic_promessas, DescricaoCanal.CANAL_PROMESSA.descr),
                 Canal(NomeCanal.CANAL_24HS.nome, R.drawable._24h_news, DescricaoCanal.CANAL_24HS.descr)
             )
         }

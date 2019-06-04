@@ -22,10 +22,7 @@ class VerifyExistisUserTasks(
     override fun doInBackground(vararg params: String?): String {
 
         val connection =
-            URL(
-                "https://divertenet.com.br/utils/controll/" +
-                        "LoginAppBaitaplayController.php?login=$login&senha=$senha"
-            )
+            URL("https://divertenet.com.br/utils/controll/LoginAppBaitaplayController.php?login=$login&senha=$senha")
                 .openConnection() as HttpURLConnection
 
         var text: String = ""
