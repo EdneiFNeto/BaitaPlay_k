@@ -3,6 +3,7 @@ package com.example.baitaplay_k.util
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.provider.Settings
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
@@ -110,6 +111,26 @@ class DialogUtil {
                 .setTitle(R.string.update_user)
                 .setView(viewCriada)
                 .show()
+        }
+
+        fun dialogNetworks(context:Context) {
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage("Falha de conexão, verifique se esta conectado\nou tente novamente mais tarde. ")
+                .setPositiveButton("Connectar", DialogInterface.OnClickListener { dialog, id ->
+                    val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
+                    context.startActivity(intent)
+                    dialog.dismiss()
+                })
+                .setIcon(R.drawable.ic_info)
+                .setCancelable(false)
+
+            val alert = builder.create()
+            alert.setTitle("Aviso")
+            alert.show()
+
+            if(CheckConnectionUtil.isNetworkAvailable(context)){
+                alert.hide()
+            }
         }
     }
 }

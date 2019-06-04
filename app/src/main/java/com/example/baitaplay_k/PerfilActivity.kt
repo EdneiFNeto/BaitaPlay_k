@@ -4,13 +4,10 @@ import android.content.Intent
 import android.database.Cursor
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
 import com.example.baitaplay_k.dao.DataBaseHandler
 import com.example.baitaplay_k.tasks.CheckVersionAndroidTasks
 import com.example.baitaplay_k.util.DialogUtil
-import com.example.baitaplay_k.util.ShowDialogEditPersonUtil
 import kotlinx.android.synthetic.main.activity_perfil.*
-import kotlinx.android.synthetic.main.editar_user_layout.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class PerfilActivity : AppCompatActivity() {

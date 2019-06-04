@@ -8,11 +8,14 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.ProgressBar
 import com.example.baitaplay_k.adapter.ListaDeCanaisAdapter
 import com.example.baitaplay_k.model.Canal
+import com.example.baitaplay_k.util.CheckConnectionUtil
+import com.example.baitaplay_k.util.DialogUtil
 import com.example.baitaplay_k.util.ListaDeCanalUtil
 import com.example.baitaplay_k.util.SelectCanalUtil
 import kotlinx.android.synthetic.main.activity_play_video.*
@@ -24,7 +27,6 @@ class VideoActivity : AppCompatActivity() {
     private var clicouNoBotao: Boolean = false
     private val TAG: String = "PlayVideoLOG"
     private var strCanal: String = ""
-    private var isLandcasp: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -59,6 +61,7 @@ class VideoActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         val canal: Canal = intent.extras.get("canal") as Canal
 
         if (canal != null) {
@@ -145,6 +148,7 @@ class VideoActivity : AppCompatActivity() {
 
         video_view.setOnErrorListener { mp, what, extra ->
             video_view.setBackgroundResource(R.drawable.ic_error_404_3)
+            progressBar.visibility = View.GONE
             true
         }
     }

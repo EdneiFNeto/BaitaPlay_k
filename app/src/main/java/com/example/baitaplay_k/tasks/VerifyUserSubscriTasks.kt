@@ -6,6 +6,7 @@ import android.os.AsyncTask
 import android.util.Log
 import com.example.baitaplay_k.MainActivity
 import com.example.baitaplay_k.model.User
+import com.example.baitaplay_k.util.CheckConnectionUtil
 import com.example.baitaplay_k.util.DialogUtil
 import org.json.JSONArray
 import java.net.HttpURLConnection
@@ -18,35 +19,43 @@ class VerifyUserSubscriTasks(context: Context, login: String, senha: String) : A
     private val context: Context = context
     private val TAG: String = "virifySubsUserLog"
 
-    override fun doInBackground(vararg params: String?): String {
+    override fun doInBackground(vararg params: String?): String? {
 
-        val connection =
-            URL("https://divertenet.com.br/utils/controll/vrifyUserIsSubscriber.php?login=$login&senha=$senha")
-                .openConnection() as HttpURLConnection
-        var text: String = ""
+        if (CheckConnectionUtil.isNetworkAvailable(context)) {
+            val connection =
+                URL("https://divertenet.com.br/utils/controll/vrifyUserIsSubscriber.php?login=$login&senha=$senha")
+                    .openConnection() as HttpURLConnection
+            var text: String = ""
 
-        try {
-            connection.connect()
-            text = connection.inputStream.use { it.reader().use { reader -> reader.readText() } }
+            try {
+                connection.connect()
+                text = connection.inputStream.use { it.reader().use { reader -> reader.readText() } }
 
-        } finally {
+            } finally {
 
+            }
+
+            Log.e(TAG, "Login $login\nSenha: $senha")
+            return text
+        } else {
+            return null
         }
-
-        Log.e(TAG, "Login $login\nSenha: $senha")
-        return text
     }
 
     override fun onPostExecute(result: String?) {
         super.onPostExecute(result)
 
-        val resp: String = handler(result)
+        if(result!=null){
+            val resp: String = handler(result)
 
-        if (resp != null) {
-            //user is subscriber
-            if (resp == "200") {
-                context.startActivity(Intent(context, MainActivity::class.java))
+            if (resp != null) {
+                //user is subscriber
+                if (resp == "200") {
+                    context.startActivity(Intent(context, MainActivity::class.java))
+                }
             }
+        }else{
+            DialogUtil.dialogNetworks(context)
         }
     }
 

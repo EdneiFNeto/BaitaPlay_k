@@ -6,6 +6,8 @@ import android.os.AsyncTask
 import android.util.Log
 import com.example.baitaplay_k.LoginActivity
 import com.example.baitaplay_k.MainActivity
+import com.example.baitaplay_k.util.CheckConnectionUtil
+import com.example.baitaplay_k.util.DialogUtil
 import org.json.JSONArray
 import java.lang.Exception
 import java.net.HttpURLConnection
@@ -19,50 +21,60 @@ class VerifyExistisUserTasks(
 
     private val TAG: String = "LoginLog"
 
-    override fun doInBackground(vararg params: String?): String {
+    override fun doInBackground(vararg params: String?): String? {
 
-        val connection =
-            URL("https://divertenet.com.br/utils/controll/LoginAppBaitaplayController.php?login=$login&senha=$senha")
-                .openConnection() as HttpURLConnection
+        if (CheckConnectionUtil.isNetworkAvailable(context)) {
 
-        var text: String = ""
+            val connection =
+                URL("https://divertenet.com.br/utils/controll/LoginAppBaitaplayController.php?login=$login&senha=$senha")
+                    .openConnection() as HttpURLConnection
 
-        try {
-            connection.connect()
-            text = connection.inputStream.use { it.reader().use { reader -> reader.readText() } }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Log.e(TAG, "Error ${e.message}")
+            var text: String = ""
+
+            try {
+                connection.connect()
+                text = connection.inputStream.use { it.reader().use { reader -> reader.readText() } }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e(TAG, "Error ${e.message}")
+            }
+
+            return text
         }
 
-        return text
+        return null
     }
 
     override fun onPostExecute(result: String?) {
         super.onPostExecute(result)
 
-        val resp = handler(result)
-        try {
-            if (resp != null) {
-                if (resp == "200") {
-                    Log.e(TAG, "Log 200")
-                    irParaMainActivity()
-                }
-                if (resp == "401") {
+        if (result != null) {
+
+            val resp = handler(result)
+            try {
+                if (resp != null) {
+                    if (resp == "200") {
+                        Log.e(TAG, "Log 200")
+                        irParaMainActivity()
+                    }
+                    if (resp == "401") {
+                        irParaActivityLogin()
+                        Log.e(TAG, "Log 401")
+                    }
+                    if (resp == "500") {
+                        Log.e(TAG, "Log 500")
+                        irParaActivityLogin()
+                    }
+                } else {
+                    Log.e(TAG, "Null")
                     irParaActivityLogin()
-                    Log.e(TAG, "Log 401")
                 }
-                if (resp == "500") {
-                    Log.e(TAG, "Log 500")
-                    irParaActivityLogin()
-                }
-            } else {
-                Log.e(TAG, "Null")
-                irParaActivityLogin()
+
+            } catch (e: Exception) {
+                Log.e(TAG, "Exception ${e.message}")
             }
-
-        } catch (e: Exception) {
-
+        } else {
+            DialogUtil.dialogNetworks(context)
         }
     }
 

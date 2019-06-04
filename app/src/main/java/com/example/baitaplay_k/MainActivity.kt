@@ -1,7 +1,9 @@
 package com.example.baitaplay_k
 
+import android.content.Context
 import android.content.Intent
 import android.database.Cursor
+import android.net.ConnectivityManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +13,8 @@ import com.example.baitaplay_k.adapter.RecycleViewCanais
 import com.example.baitaplay_k.tasks.AuthentuicationUserTasks
 import com.example.baitaplay_k.dao.DataBaseHandler
 import com.example.baitaplay_k.model.User
+import com.example.baitaplay_k.util.CheckConnectionUtil
+import com.example.baitaplay_k.util.DialogUtil
 import com.example.baitaplay_k.util.ListaDeCanalUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -18,7 +22,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 class MainActivity : AppCompatActivity() {
 
     private var clicouNoBotao: Boolean = false
-    private val TAG: String ="MainLog"
+    private val TAG: String = "MainLog"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

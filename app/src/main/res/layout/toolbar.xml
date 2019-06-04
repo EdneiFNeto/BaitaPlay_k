@@ -36,6 +36,7 @@
 
         <ImageView
 
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="46dp"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_person"
@@ -45,6 +46,7 @@
 
         <ImageView
 
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="8dp"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_exit_to_app_black_24dp"
